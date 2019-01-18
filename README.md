@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     :
 ]
 ```
-5. Create the model to save the collection into database `app/models.py`
+5. Create the model to define the table structure of database and save the collection into database `app/models.py`
 ```python
 from django.db import models
 from django.urls import reverse
@@ -83,4 +83,122 @@ class Student(models.Model):
     # The absolute path to get the url then reverse into 'student_edit' with keyword arguments (kwargs) primary key
     def get_absolute_url(self):
         return reverse('student_edit', kwargs={'pk': self.pk})
+```
+6. Every after change `models.py` you need to make migrations into `db.sqlite3` (database) to create the table for the new model
+```
+manage.py makemigrations
+manage.py migrate
+```
+7. Create the views to create app pages on browser, the file is `app/views.py` according the above structure
+```python
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from .models import Student
+
+# Create your views here.
+
+class StudentList(ListView):
+    model = Student
+
+class StudentDetail(DetailView):
+    model = Student
+
+class StudentCreate(CreateView):
+    model = Student
+    # Field must be same as the model attribute
+    fields = ['name', 'identityNumber', 'address', 'department']
+    success_url = reverse_lazy('student_list')
+
+class StudentUpdate(UpdateView):
+    model = Student
+    # Field must be same as the model attribute
+    fields = ['name', 'identityNumber', 'address', 'department']
+    success_url = reverse_lazy('student_list')
+
+class StudentDelete(DeleteView):
+    model = Student
+    success_url = reverse_lazy('student_list')
+```
+8. Then, create file `app/urls.py` to define app url path (in CI as same as route function)
+```python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.StudentList.as_view(), name='student_list'),
+    path('view/<int:pk>', views.StudentDetail.as_view(), name='student_detail'),
+    path('new', views.StudentCreate.as_view(), name='student_new'),
+    path('edit/<int:pk>', views.StudentUpdate.as_view(), name='student_edit'),
+    path('delete/<int:pk>', views.StudentDelete.as_view(), name='student_delete'),
+]
+```
+9. The `app/urls.py` would not work unless you include that into the main url `rattlesnake/urls.py`
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    :
+    path('student/', include('app.urls')),
+    :
+]
+```
+10. Create the html file to display user interface, you need create directory `app/templates/app/` like below
+```
+* django-crud-sqlite/
+  |--- rattlesnake/
+  |    |--- app/
+  |    |    |--- migrations/
+  |    |    |--- templates/
+  |    |    |    |--- app/
+  |    |    |--- __init__.py
+  |    |    |--- admin.py
+  |    |    |--- apps.py
+  |    |    |--- models.py
+  |    |    |--- tests.py
+  |    |    |--- views.py
+  |    |--- rattlesnake/
+  |    |    |--- __init__.py
+  |    |    |--- settings.py
+  |    |    |--- urls.py
+  |    |    |--- wsgi.py
+  |    |--- manage.py
+  |--- venv/
+```
+11. Create file `student_list.html` to display or parsing student list data with `ListView` library
+```html
+<h1>Student List</h1>
+<a href="{% url 'student_new' %}">Create New Student</a><br><br>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Identity Number</th>
+        <th>Action</th>
+    </tr>
+    {% for student in object_list %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.identityNumber }}</td>
+        <td>
+            <a href="{% url 'student_detail' student.id %}">Detail</a>
+            <a href="{% url 'student_edit' student.id %}">Edit</a>
+            <a href="{% url 'student_delete' student.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3"><b>Data is empty! Please, add data first.</b></td></tr>
+    {% endfor %}
+</table>
+```
+12. Create file `student_detail.html` to display or parsing data of each student and will used by `DetailView` library
+```html
+<h1>Student Detail</h1>
+<h3>Name : {{ object.name }}</h3>
+<h3>Identity Number : {{ object.identityNumber }}</h3>
+<h3>Address : {{ object.address }}</h3>
+<h3>Department : {{ object.department }}</h3>
 ```
