@@ -169,7 +169,7 @@ urlpatterns = [
   |    |--- manage.py
   |--- venv/
 ```
-11. Create file `student_list.html` to display or parsing student list data with `ListView` library
+11. Create file `app/templates/app/student_list.html` to display or parsing student list data with `ListView` library
 ```html
 <h1>Student List</h1>
 <a href="{% url 'student_new' %}">Create New Student</a><br><br>
@@ -194,7 +194,7 @@ urlpatterns = [
     {% endfor %}
 </table>
 ```
-12. Create file `student_detail.html` to display or parsing data of each student and will used by `DetailView` library
+12. Create file `app/templates/app/student_detail.html` to display or parsing data of each student and will used by `DetailView` library
 ```html
 <h1>Student Detail</h1>
 <h3>Name : {{ object.name }}</h3>
@@ -202,3 +202,47 @@ urlpatterns = [
 <h3>Address : {{ object.address }}</h3>
 <h3>Department : {{ object.department }}</h3>
 ```
+13. Create file `app/templates/app/student_form.html` to display form input and edit views
+```html
+<h1>Student Form</h1>
+<form method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td>Identity Number</td>
+            <td>:</td>
+            <td>{{ form.identityNumber }}</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>:</td>
+            <td>{{ form.department }}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>:</td>
+            <td>{{ form.address }}</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Save"></td>
+        </tr>
+    </table>
+</form>
+```
+14. Create file `app/templates/app/student_confirm_delete.html` to display promt or alert confirmation to delete the object view
+```html
+<form method="post">{% csrf_token %}
+    Are you sure you want to delete "{{ object }}" ?
+    <input type="submit" value="Submit" />
+</form>
+```
+15. Test the project
+```
+manage.py runserver
+```
+
+### Running service screenshot
