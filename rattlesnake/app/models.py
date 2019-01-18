@@ -3,8 +3,10 @@ from django.urls import reverse
 
 # Create your models here.
 class Student(models.Model):
-    name = models.CharField(max_length=200)
-    identityNumber = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, null=False)
+    identityNumber = models.CharField(max_length=200, null=False)
+    address = models.CharField(max_length=200, null=True)
+    department = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.name
