@@ -17,7 +17,7 @@
         <td>{{ student.name }}</td>
         <td>{{ student.identityNumber }}</td>
         <td>
-            <a href="{% url 'student_view' student.id %}">Detail</a>
+            <a href="{% url 'student_detail' student.id %}">Detail</a>
             <a href="{% url 'student_edit' student.id %}">Edit</a>
             <a href="{% url 'student_delete' student.id %}">Delete</a>
         </td>

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -15,7 +16,7 @@ class StudentDetail(DetailView):
 
 class StudentCreate(CreateView):
     model = Student
-    fields = ['name', 'identityNumber']
+    fields = ['name', 'identityNumber', 'address', 'department']
     success_url = reverse_lazy('student_list')
 
 class StudentUpdate(UpdateView):
