@@ -295,7 +295,7 @@ manage.py runserver
 5. Form edit student page, url path `student/edit/<parameter:id>
 ![Sample 7](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/7.PNG)
 
-![Sample 8(https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/8.PNG)
+![Sample 8](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/8.PNG)
 
 6. Confirmation page if data will remove from collection, url path `student/delete/<parameter:id>`
 ![Sample 9](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/9.PNG)
