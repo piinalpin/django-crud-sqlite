@@ -277,27 +277,33 @@ manage.py runserver
 ### Running service screenshot
 
 1. List student page but if list is empty will display `Data is empty! Please add data first.`
+
 ![Sample 1](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/1.PNG)
 
 2. Form input student page, url path `student/new`
+
 ![Sample 2](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/2.PNG)
 
 3. List student page if data inserted
+
 ![Sample 3](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/3.PNG)
 
 ![Sample 4](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/4.PNG)
 
 4. Student detail page, url path `student/view/<parameters:id>`
+
 ![Sample 5](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/5.PNG)
 
 ![Sample 6](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/6.PNG)
 
 5. Form edit student page, url path `student/edit/<parameter:id>
+
 ![Sample 7](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/7.PNG)
 
 ![Sample 8](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/8.PNG)
 
 6. Confirmation page if data will remove from collection, url path `student/delete/<parameter:id>`
+
 ![Sample 9](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/9.PNG)
 
 ![Sample 10](https://raw.githubusercontent.com/piinalpin/django-crud-sqlite/master/docs/10.PNG)
