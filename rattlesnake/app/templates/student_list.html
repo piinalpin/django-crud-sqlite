@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Student List</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Identity Number</th>
+        <th>Action</th>
+    </tr>
+    {% for student in object_list %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.identityNumber }}</td>
+        <td>
+            <a href="{% url 'student_view' student.id %}">Detail</a>
+            <a href="{% url 'student_edit' student.id %}">Edit</a>
+            <a href="{% url 'student_delete' student.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'student_new' %}">Create New Student</a>
+</body>
+</html>
