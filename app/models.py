@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
-class Student(models.Model):
+class App_Student(models.Model):
     name = models.CharField(max_length=200, null=False)
     identityNumber = models.CharField(max_length=200, null=False)
     address = models.CharField(max_length=200, null=True)
