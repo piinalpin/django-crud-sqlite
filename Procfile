@@ -1,1 +1,1 @@
-web: gunicorn rattlesnake.rattlesnake.wsgi
+web: python manage.py runserver
