@@ -4,26 +4,26 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .models import App_Student
+from .models import Student
 
 # Create your views here.
 
 class StudentList(ListView):
-    model = App_Student
+    model = Student
 
 class StudentDetail(DetailView):
-    model = App_Student
+    model = Student
 
 class StudentCreate(CreateView):
-    model = App_Student
+    model = Student
     fields = ['name', 'identityNumber', 'address', 'department']
     success_url = reverse_lazy('student_list')
 
 class StudentUpdate(UpdateView):
-    model = App_Student
+    model = Student
     fields = ['name', 'identityNumber', 'address', 'department']
     success_url = reverse_lazy('student_list')
 
 class StudentDelete(DeleteView):
-    model = App_Student
+    model = Student
     success_url = reverse_lazy('student_list')
