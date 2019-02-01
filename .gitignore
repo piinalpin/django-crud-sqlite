@@ -3,6 +3,7 @@
 ### Django Ignore ###
 __pycache__/
 venv/
+static/
 .idea
 migrations
 db.sqlite3
