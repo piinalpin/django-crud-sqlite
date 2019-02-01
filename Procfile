@@ -1,1 +1,1 @@
-web: gunicorn rattlesnake.wsgi
+web: gunicorn rattlesnake/rattlesnake.wsgi
