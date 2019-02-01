@@ -25,7 +25,7 @@ SECRET_KEY = '-)ir)&2lz9o41=qsd7pbzl+uv%1tgf+$%ddvz9bbw6_(exk)(f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'https://django-crud-rattlesnake.herokuapp.com/']
 
 
 # Application definition
